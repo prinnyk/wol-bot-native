@@ -4,6 +4,7 @@ WORKDIR /app
 COPY . .
 RUN chmod +x ./gradlew
 RUN ./gradlew clean nativeCompile \
+    -PnativeImageArgs="-march=armv8-a --gc=G1" \
     -x test
 
 # Release
