@@ -44,3 +44,15 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+graalvmNative {
+    binaries {
+        main {
+            def argsProp = project.findProperty("nativeImageArgs") as String
+            if (argsProp != null && !argsProp.trim().isEmpty()) {
+                def args = argsProp.trim().split(/\s+/)
+                buildArgs.addAll(args)
+            }
+        }
+    }
+}
